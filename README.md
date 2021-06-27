@@ -11,3 +11,21 @@ The GFGA block is used to select discriminative cues from defect classes such as
 ### The SCAN architecture, MSAM and Transition module
 ![alt text](https://github.com/NBPuhan/SCAN/blob/main/Figures/TAI_Revised_New.png)
 This figure shows (a). The proposed SCAN. Here Max(a,b) stands for max pooling layer with pool size (a,a) and stride as b, GAP represents the global average pooling layer. In DENSE, two dense layers of 256 and 100 nodes with ReLU activation are used. The numbers associated with GFGA and MSAM modules denote the number of neurons in the dense layer. The Up(2) represents upsampling operation by a factor of 2. (b). The proposed MSAM module. (c). The transition block. In multi-target multi-class classification, structural defects usually occur with diverse ranges in scale, aspect ratio, resolution and the area of appearance. The design of the proposed MSAM is motivated to selectively consolidate multiscale discriminative features, ranging from 48 x 48 to 6 x 6. After reaching the lowest resolution in the respective path, a top-down sequence of upsampling operation is performed followed by the GFGA block to further highlight local information. In each scale, one BMAM module is incorporated for encoding important channel and spatial descriptors to accommodate defect variations. Finally, the features from different scales are aggregated to produce the output with holistic spatial and channel information.
+
+## Hyper-parameters for training
+
+For our results, 200 epochs are considered with mini-batch size of 16 and learning rate 0.001 and momentum 0.9. The data split protocol same as the existing works were being followed.
+
+## Results
+
+### Classification results on CODEBRIM dataset:
+![alt text](https://github.com/NBPuhan/SCAN/blob/main/Results/res2_TAI.PNG)
+### Classification results on SDNET-2018 dataset:
+![alt text](https://github.com/NBPuhan/SCAN/blob/main/Results/res3_TAI.PNG)
+### Classification results on Concrete Crack Image dataset:
+![alt text](https://github.com/NBPuhan/SCAN/blob/main/Results/res4_TAI.PNG)
+
+### Attention maps using sample images from three datasets:
+![alt text](https://github.com/NBPuhan/SCAN/blob/main/Figures/Attention_Maps_TAI.PNG)
+
+These figures show the attention maps obtained from the proposed iDAAM network for sample images from CODEBRIM, concrete crack image and SDNET-2018 datasets and are given in top, middle and bottom row, respectively. Original images are followed by their respective attention maps, placed side-by-side. Here, red color denotes highest attention, while blue denotes the lowest attention. First row from left to right: (a) Exposed bars with spallation and corrosion, (b) Corroded bar with crack and spallation, (c) Spallation with efflorescence, (d) Spalled corroded bar. Second row from left to right: (e) Corroded iron bars with efflorescence, (f) Spalled bar, (g) Corroded bar with crack and spallation, (h) Heavy corrosion. Third row from left to right: (i) Cracked bridge deck image, (j) wall image with crack, (k)-(l) cracked concrete pavement images. Last row from left to right: (m)-(p) Crack defect images from Concrete Crack Image dataset.
